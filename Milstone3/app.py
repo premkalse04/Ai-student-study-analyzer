@@ -63,7 +63,7 @@ with st.sidebar:
 
     page = st.radio(
         "Navigation",
-        ["🏠 Home", "✍️ Manual Entry", "📁 Upload Excel", "📊 Analytics"],
+        ["🏠 Home", "✍️ Individual prediction", "📁 Upload Excel", "📊 Analytics"],
         label_visibility="collapsed"
     )
     
@@ -124,8 +124,8 @@ if page == "🏠 Home":
 
 
 
-elif page == "✍️ Manual Entry":
-    st.header("✍️ Manual Student Data Entry")
+elif page == "✍️ Individual prediction":
+    st.header(" Manual Student Data Entry")
 
     with st.form("manual_form"):
         c1, c2 = st.columns(2)
@@ -268,24 +268,3 @@ elif page == "📊 Analytics":
         st.metric("Mean Squared Error", round(mean_squared_error(y_test, y_pred), 2))
         st.metric("R² Score", round(r2_score(y_test, y_pred), 2))
 
-# =========================================================
-# Navbar (Static HTML)
-# =========================================================
-st.markdown(
-    """
-    <div class="navbar">
-        <div class="navbar-title">
-            🎓 StudyTrack – AI Based Student Study Habit Recommender
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-# =========================================================
-# Footer
-# =========================================================
-st.markdown("---")
-st.markdown(
-    '<div class="footer">Powered by StudyTrack AI</div>',
-    unsafe_allow_html=True
-)

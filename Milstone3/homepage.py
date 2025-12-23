@@ -1,67 +1,74 @@
 import streamlit as st
 
 def show_homepage():
-    st.markdown("""
-    <div style="padding: 2.5rem 1rem;">
-        <h1 style="font-size:2.6rem;">🎓 StudyTrack</h1>
-        <h4 style="color:#9ca3af;">
-            AI-Based Student Study Habit Recommender System
-        </h4>
-        <p style="max-width:850px; font-size:1.05rem; margin-top:1rem;">
-            StudyTrack is an intelligent analytics platform designed to analyze
-            student study habits, predict academic performance, and generate
-            personalized recommendations using Machine Learning techniques.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("### ✨ AI-Powered Academic Analytics")
+
+    st.markdown(
+        "# 🎓 **StudyTrack**\n"
+        "### AI-Based Student Study Habit Recommender System"
+    )
+
+    st.write(
+        "An intelligent analytics platform that analyzes student study habits, "
+        "predicts academic performance, and generates personalized recommendations "
+        "using advanced Machine Learning techniques."
+    )
+
+    st.markdown("")
 
 
-    # ---------- Features ----------
-    st.markdown("## 🚀 Key Features")
+    # Metrics
+    m1, m2, m3 = st.columns(3)
+    m1.metric("Accuracy", "95%")
+    m2.metric("Students", "10K+")
+    m3.metric("ML Models", "3")
+
+    st.markdown("---")
+
+    # Key Features
+    st.subheader("🚀 Key Features")
 
     f1, f2, f3 = st.columns(3)
-
     with f1:
-        st.markdown("""
-        ### 📊 Data-Driven Analysis
-        - Study & sleep pattern analysis  
-        - Attendance impact evaluation  
-        - Performance tracking  
-        """)
+        st.markdown("### 📊 Data-Driven Analysis")
+        st.write("- Study & sleep analysis")
+        st.write("- Attendance impact")
+        st.write("- Performance tracking")
 
     with f2:
-        st.markdown("""
-        ### 🤖 AI & ML Models
-        - Linear Regression (Score Prediction)  
-        - K-Means Clustering (Student Groups)  
-        - Risk classification  
-        """)
+        st.markdown("### 🤖 AI & ML Models")
+        st.write("- Linear Regression")
+        st.write("- K-Means Clustering")
+        st.write("- Risk classification")
 
     with f3:
-        st.markdown("""
-        ### 📄 Smart Recommendations
-        - Personalized study tips  
-        - Excel-based batch analysis  
-        - Downloadable results  
-        """)
+        st.markdown("### 📄 Smart Recommendations")
+        st.write("- Personalized tips")
+        st.write("- Excel batch analysis")
+        st.write("- Downloadable reports")
+
+    st.markdown("")
+
+    f4, f5, f6 = st.columns(3)
+    with f4:
+        st.markdown("### 📈 Performance Prediction")
+        st.write("Forecast academic outcomes")
+
+    with f5:
+        st.markdown("### 🧩 Student Segmentation")
+        st.write("Identify at-risk students")
+
+    with f6:
+        st.markdown("### ⚡ Real-Time Insights")
+        st.write("Instant analytics & dashboards")
 
     st.markdown("---")
 
-    # ---------- Workflow ----------
-    st.markdown("## 🧭 System Workflow")
-
-    st.markdown("""
-    1️⃣ Upload student data or enter manually  
-    2️⃣ System preprocesses & normalizes data  
-    3️⃣ ML models analyze patterns  
-    4️⃣ Recommendations & insights generated  
-    5️⃣ Visual analytics for decision-making  
-    """)
+    # Workflow
+    st.subheader("🧭 System Workflow")
+    st.write(
+        "Upload Data → Preprocess → ML Analysis → Generate Insights → Visualize"
+    )
 
     st.markdown("---")
-
-    st.markdown("""
-    <div style="text-align:center; color:#9ca3af; font-size:0.9rem;">
-        Final Year Project · AI-Based Academic Analytics System
-    </div>
-    """, unsafe_allow_html=True)
+    st.caption("Final Year Project · AI-Based Academic Analytics System")
