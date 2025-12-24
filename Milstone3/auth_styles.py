@@ -14,33 +14,35 @@ def auth_css():
     }
 
     /* Overall page */
-    .auth-page {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding: 2.5rem 1.5rem;
+    .block-container {
+        padding: 2.5rem 1rem 3rem;
+        max-width: 1150px;
+    }
+
+    /* Hide legacy wrappers if still rendered */
+    .auth-page,
+    .auth-wrapper {
+        display: none !important;
+    }
+
+    .stApp {
         background: radial-gradient(circle at 10% 20%, #132347 0, rgba(11,18,32,0) 30%),
                     radial-gradient(circle at 80% 0%, #1b3a6c 0, rgba(11,18,32,0) 35%),
                     var(--bg);
     }
 
-    /* Main container */
-    .auth-wrapper {
-        width: min(1150px, 100%);
-        min-height: 520px;
-        display: grid;
-        grid-template-columns: 1.08fr 1fr;
-        border-radius: 26px;
-        overflow: hidden;
+    /* Columns container */
+    div[data-testid="stHorizontalBlock"] {
         background: linear-gradient(150deg, rgba(16,24,40,0.95), rgba(12,19,35,0.95));
         border: 1px solid var(--border);
+        border-radius: 26px;
+        overflow: hidden;
         box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
         position: relative;
         isolation: isolate;
     }
 
-    .auth-wrapper::after {
+    div[data-testid="stHorizontalBlock"]::after {
         content: "";
         position: absolute;
         inset: -40%;
@@ -180,19 +182,9 @@ def auth_css():
         filter: brightness(1.05);
     }
 
-    /* Streamlit default card padding fixes */
-    .block-container {
-        padding: 2rem 1rem 3rem;
-    }
-
     @media (max-width: 1024px) {
-        .auth-wrapper {
-            grid-template-columns: 1fr;
-        }
-
-        .auth-left {
-            border-right: none;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+        div[data-testid="stHorizontalBlock"] {
+            border-radius: 22px;
         }
     }
     </style>

@@ -6,9 +6,6 @@ def auth_page():
     # Inject page-specific CSS
     auth_css()
 
-    # Outer shell to center content
-    st.markdown('<div class="auth-page"><div class="auth-wrapper">', unsafe_allow_html=True)
-
     left, right = st.columns([1.15, 1])
 
     # ---------- LEFT PANEL ----------
@@ -76,6 +73,3 @@ def auth_page():
                     st.error("User already exists")
 
         st.markdown('</div>', unsafe_allow_html=True)
-
-    # Close wrapper
-    st.markdown('</div></div>', unsafe_allow_html=True)

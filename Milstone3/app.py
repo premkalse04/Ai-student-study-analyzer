@@ -85,43 +85,6 @@ with st.sidebar:
 # =========================================================
 if page == "🏠 Home":
     show_homepage()
-    st.markdown("""    
-              <div class="hero">
-     <h1>🎓 StudyTrack</h1>
-     <p class="hero-subtitle">
-         AI-Based Student Study Habit Recommender System
-     </p>
-     <p class="hero-desc">
-        Analyze student study habits, predict academic performance,
-        and generate intelligent recommendations using Machine Learning.
-     </p>
-</div>
-""", unsafe_allow_html=True)
-   
-
-# ---------------- Landing ----------------
-    col1, col2 = st.columns([2, 1])
-
-    with col1:
-        st.markdown('<div class="card">', unsafe_allow_html=True)
-        st.markdown("## Welcome to StudyTrack")
-        st.markdown(
-            "Analyze student study habits, identify risks early, "
-            "and generate AI-based recommendations."
-        )
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    with col2:
-        st.markdown('<div class="card">', unsafe_allow_html=True)
-        st.markdown("### Snapshot")
-        st.markdown("""
-        - 🎓 Student-focused  
-        - 📊 Excel-based analysis  
-        - 🤖 AI-style recommendations  
-        - 🚀 Easy to extend with ML  
-        """)
-        st.markdown("</div>", unsafe_allow_html=True)
-
 
 
 elif page == "✍️ Individual prediction":
@@ -153,19 +116,42 @@ elif page == "✍️ Individual prediction":
 
 elif page == "📁 Upload Excel":
     st.header("📁 Upload Excel File")
+    st.markdown(
+        """
+        Upload your dataset to generate tailored recommendations.
+        We'll adapt to your column names automatically (common aliases supported).
+        """,
+        unsafe_allow_html=True,
+    )
 
     file = st.file_uploader("Upload .xlsx file", type=["xlsx"])
 
     if file:
         df = pd.read_excel(file)
-        st.session_state["uploaded_df"] = df
-
-        st.success("Data uploaded successfully")
-        st.dataframe(df.head(), use_container_width=True)
-
-        if st.button("📊 Analyze & Recommend"):
+        # Attempt to map and process; show friendly errors
+        try:
             result_df = process_excel(df)
-            st.dataframe(result_df)
+            st.session_state["uploaded_df"] = df
+
+            st.success("Data uploaded and mapped successfully. Model ready to recommend.")
+
+            st.markdown("#### Preview (first 5 rows)")
+            st.dataframe(df.head(), use_container_width=True)
+
+            st.markdown("#### Personalized recommendations")
+            cols_to_show = [
+                "Performance_Level",
+                "Rec_Study",
+                "Rec_Sleep",
+                "Rec_Attendance",
+                "Rec_Assignments",
+                "Rec_Advice",
+            ]
+            available = [c for c in cols_to_show if c in result_df.columns]
+            st.dataframe(result_df[available], use_container_width=True)
+
+            with st.expander("Full results (all columns)"):
+                st.dataframe(result_df, use_container_width=True)
 
             buffer = BytesIO()
             result_df.to_excel(buffer, index=False)
@@ -174,7 +160,14 @@ elif page == "📁 Upload Excel":
             st.download_button(
                 "⬇️ Download Results",
                 buffer,
-                "studytrack_results.xlsx"
+                "studytrack_results.xlsx",
+                use_container_width=True,
+            )
+        except Exception as e:
+            st.error(f"Could not process file: {e}")
+            st.info(
+                "Ensure your sheet includes study hours, sleep hours, attendance %, "
+                "assignment completion %, and test score columns (common aliases accepted)."
             )
 
 
