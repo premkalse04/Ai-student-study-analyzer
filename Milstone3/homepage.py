@@ -1,169 +1,139 @@
 import streamlit as st
+from pathlib import Path
+
+ASSETS = Path(__file__).parent / "assets"
+
+def _hero_section():
+    return """
+    <div style="text-align:center; padding:48px 0 24px 0;">
+      <div style="display:inline-block; background:linear-gradient(90deg,#06b6d4,#3b82f6); color:white; padding:6px 14px; border-radius:20px; font-weight:700; margin-bottom:14px;">
+      🎓  AI Study Habit Recommender
+      </div>
+      <h1 style="font-size:48px; margin:6px 0 8px 0; color:#ffffff;">StudyTrack</h1>
+      <p style="color:#9ca3af; max-width:900px; margin:0 auto 18px auto; line-height:1.6;">
+        An intelligent analytics platform that analyzes student study habits, predicts academic performance,
+        and generates personalized recommendations using machine learning.
+      </p>
+      <div style="margin-top:12px;">
+        <a href="#" style="background:linear-gradient(90deg,#06b6d4,#3b82f6); color:white; padding:10px 18px; border-radius:10px; text-decoration:none; margin-right:8px;">Get Started</a>
+        <a href="#" style="background:#0b1220; color:#cbd5e1; padding:10px 18px; border-radius:10px; text-decoration:none;">View sample report</a>
+      </div>
+    </div>
+    """
+
+def _workflow_section():
+    return """
+    <div style="border-top:2px dashed rgba(148,163,184,0.12); margin:28px 0; padding:20px 10px; border-radius:8px;">
+      <h3 style="text-align:center; color:#e6eef8; margin-bottom:12px;">System Workflow</h3>
+      <div style="display:flex; gap:14px; justify-content:space-between; flex-wrap:wrap;">
+        <div style="flex:1; min-width:160px; text-align:center; padding:12px; background:#071018; border-radius:10px;">
+          <div style="width:52px; height:52px; margin:0 auto 8px; border-radius:12px; background:linear-gradient(135deg,#06b6d4,#3b82f6); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">01</div>
+          <div style="font-weight:700; color:#e6eef8;">Upload Data</div>
+          <div style="color:#9ca3af; font-size:13px;">Excel or manual entry</div>
+        </div>
+        <div style="flex:1; min-width:160px; text-align:center; padding:12px; background:#071018; border-radius:10px;">
+          <div style="width:52px; height:52px; margin:0 auto 8px; border-radius:12px; background:linear-gradient(135deg,#7c3aed,#06b6d4); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">02</div>
+          <div style="font-weight:700; color:#e6eef8;">Preprocess</div>
+          <div style="color:#9ca3af; font-size:13px;">Normalize & clean</div>
+        </div>
+        <div style="flex:1; min-width:160px; text-align:center; padding:12px; background:#071018; border-radius:10px;">
+          <div style="width:52px; height:52px; margin:0 auto 8px; border-radius:12px; background:linear-gradient(135deg,#06b6d4,#9333ea); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">03</div>
+          <div style="font-weight:700; color:#e6eef8;">ML Analysis</div>
+          <div style="color:#9ca3af; font-size:13px;">Regression & Clustering</div>
+        </div>
+        <div style="flex:1; min-width:160px; text-align:center; padding:12px; background:#071018; border-radius:10px;">
+          <div style="width:52px; height:52px; margin:0 auto 8px; border-radius:12px; background:linear-gradient(135deg,#10b981,#06b6d4); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">04</div>
+          <div style="font-weight:700; color:#e6eef8;">Generate Insights</div>
+          <div style="color:#9ca3af; font-size:13px;">Personalized actions</div>
+        </div>
+        <div style="flex:1; min-width:160px; text-align:center; padding:12px; background:#071018; border-radius:10px;">
+          <div style="width:52px; height:52px; margin:0 auto 8px; border-radius:12px; background:linear-gradient(135deg,#3b82f6,#06b6d4); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">05</div>
+          <div style="font-weight:700; color:#e6eef8;">Visualize</div>
+          <div style="color:#9ca3af; font-size:13px;">Interactive dashboards</div>
+        </div>
+      </div>
+    </div>
+    """
+
+def _features_section():
+    return """
+    <div style="margin:18px 0 6px 0;">
+      <h3 style="text-align:center; color:#e6eef8; margin-bottom:12px;">Key Features</h3>
+      <div style="display:flex; gap:18px; justify-content:center; flex-wrap:wrap;">
+        <div style="width:320px; background:#071018; padding:18px; border-radius:10px; text-align:left;">
+          <div style="font-size:26px;">📊</div>
+          <h4 style="margin:8px 0 6px 0; color:#e6eef8;">Data-Driven Analysis</h4>
+          <div style="color:#9ca3af; font-size:13px;">Study & sleep pattern analysis, attendance impact, and performance tracking.</div>
+        </div>
+        <div style="width:320px; background:#071018; padding:18px; border-radius:10px; text-align:left;">
+          <div style="font-size:26px;">🤖</div>
+          <h4 style="margin:8px 0 6px 0; color:#e6eef8;">AI & ML Models</h4>
+          <div style="color:#9ca3af; font-size:13px;">Regression for prediction, K-Means for segmentation, and risk classification.</div>
+        </div>
+        <div style="width:320px; background:#071018; padding:18px; border-radius:10px; text-align:left;">
+          <div style="font-size:26px;">⚡</div>
+          <h4 style="margin:8px 0 6px 0; color:#e6eef8;">Smart Recommendations</h4>
+          <div style="color:#9ca3af; font-size:13px;">Personalized study tips, downloadable reports, and tailored advice.</div>
+        </div>
+      </div>
+    </div>
+    """
+
+def _brand_card():
+    return """
+    <div style="margin-top:22px; padding:22px; background:linear-gradient(90deg, rgba(7,11,18,0.85), rgba(14,20,28,0.75)); border-radius:12px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+      <div style="flex:1; min-width:280px;">
+        <div style="display:inline-block; background:linear-gradient(90deg,#06b6d4,#3b82f6); color:white; padding:8px 12px; border-radius:12px; font-weight:700;">AI-Powered Academic Analytics</div>
+        <h2 style="color:#fff; margin-top:12px;">StudyTrack</h2>
+        <p style="color:#9ca3af; max-width:700px;">AI-based student study habit recommender — analyze habits, forecast outcomes, and deliver tailored recommendations to keep learners on track.</p>
+        <div style="margin-top:12px;">
+          <a href="#" style="background:linear-gradient(90deg,#06b6d4,#3b82f6); color:white; padding:10px 14px; border-radius:8px; text-decoration:none; margin-right:8px;">Get Started</a>
+          <a href="#" style="background:#0b1220; color:#9ca3af; padding:10px 14px; border-radius:8px; text-decoration:none;">View sample report</a>
+        </div>
+      </div>
+      <div style="width:220px; min-width:180px; text-align:center;">
+        <div style="background:#08121a; border-radius:10px; padding:14px;">
+          <div style="font-weight:800; color:#06b6d4; font-size:28px;">95%</div>
+          <div style="color:#9ca3af; font-size:13px;">Forecast accuracy</div>
+          <hr style="opacity:0.06; margin:12px 0;">
+          <div style="font-weight:700; color:#7dd3fc; font-size:20px;">10K+</div>
+          <div style="color:#9ca3af; font-size:13px;">Students</div>
+        </div>
+      </div>
+    </div>
+    """
+
+def _what_you_get():
+    return """
+    <div style="margin-top:18px;">
+      <h3 style="text-align:center; color:#e6eef8;">What you get</h3>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+        <div style="width:300px; background:#071018; padding:16px; border-radius:10px; text-align:left;">
+          <div style="font-size:22px;">📊</div>
+          <h4 style="margin:8px 0 6px 0; color:#e6eef8;">Data-driven insights</h4>
+          <div style="color:#9ca3af; font-size:13px;">Track study hours, sleep, attendance and outcomes.</div>
+        </div>
+        <div style="width:300px; background:#071018; padding:16px; border-radius:10px; text-align:left;">
+          <div style="font-size:22px;">🔮</div>
+          <h4 style="margin:8px 0 6px 0; color:#e6eef8;">ML-powered predictions</h4>
+          <div style="color:#9ca3af; font-size:13px;">Regression, clustering and risk identification.</div>
+        </div>
+        <div style="width:300px; background:#071018; padding:16px; border-radius:10px; text-align:left;">
+          <div style="font-size:22px;">⚡</div>
+          <h4 style="margin:8px 0 6px 0; color:#e6eef8;">Actionable steps</h4>
+          <div style="color:#9ca3af; font-size:13px;">Personalized recommendations and reports.</div>
+        </div>
+      </div>
+    </div>
+    """
 
 def show_homepage():
-    # Hero section
-    st.markdown(
-        """
-        <div class="hero">
-          <div class="hero-grid">
-            <div class="hero-text">
-              <div class="pill pill-glow">AI Study Habit Recommender</div>
-              <h1>Study smarter with <span class="gradient-text">StudyTrack</span></h1>
-              <p class="hero-subtitle">Outcome-focused analytics for educators and learners</p>
-              <p class="hero-desc">
-                Analyze study behaviors, predict performance, and deliver
-                tailored actions that keep every learner on track — powered by
-                machine learning insights.
-              </p>
-              <div class="hero-actions">
-                <a class="btn primary">📊 Start analyzing</a>
-                <a class="btn ghost">📄 View sample report</a>
-              </div>
-              <div class="hero-microcopy">
-                Secure by design • Works with spreadsheets • Built for educators
-              </div>
-            </div>
-            <div class="hero-card">
-              <div class="card-title">Live snapshot</div>
-              <div class="stat-row">
-                <div>
-                  <div class="stat-label">Forecast accuracy</div>
-                  <div class="stat-value">95%</div>
-                </div>
-                <div>
-                  <div class="stat-label">Students profiled</div>
-                  <div class="stat-value">10K+</div>
-                </div>
-              </div>
-              <div class="divider"></div>
-              <div class="stacked">
-                <div class="stacked-item">
-                  <span class="dot green"></span>
-                  Early-risk detection active
-                </div>
-                <div class="stacked-item">
-                  <span class="dot blue"></span>
-                  Personalized recommendations ready
-                </div>
-                <div class="stacked-item">
-                  <span class="dot purple"></span>
-                  Clustering calibrated (K=3)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    st.markdown(_hero_section(), unsafe_allow_html=True)
+    st.markdown(_workflow_section(), unsafe_allow_html=True)
+    st.markdown(_features_section(), unsafe_allow_html=True)
+    st.markdown(_brand_card(), unsafe_allow_html=True)
+    st.markdown(_what_you_get(), unsafe_allow_html=True)
+    st.markdown("<hr style='opacity:0.06'>", unsafe_allow_html=True)
 
-    # Metrics row
-    m1, m2, m3 = st.columns(3)
-    m1.metric("On-time completion", "93%", "↑ 4%")
-    m2.metric("Students supported", "10,482", "↑ 612")
-    m3.metric("Recommendation CTR", "47%", "↑ 6%")
-
-    st.markdown("<div class='section-heading'>What you get</div>", unsafe_allow_html=True)
-
-    # Features grid
-    f1, f2, f3 = st.columns(3)
-    with f1:
-        st.markdown(
-            """
-            <div class="card feature">
-              <div class="icon-badge">📊</div>
-              <h3>Data-driven insights</h3>
-              <p>Track study hours, sleep, attendance, and outcomes in one place.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with f2:
-        st.markdown(
-            """
-            <div class="card feature">
-              <div class="icon-badge">🤖</div>
-              <h3>ML-powered predictions</h3>
-              <p>Blend regression, clustering, and risk models to forecast performance.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with f3:
-        st.markdown(
-            """
-            <div class="card feature">
-              <div class="icon-badge">⚡</div>
-              <h3>Actionable next steps</h3>
-              <p>Serve personalized recommendations and downloadable reports instantly.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    # Secondary row
-    g1, g2, g3 = st.columns(3)
-    with g1:
-        st.markdown(
-            """
-            <div class="card mini">
-              <h4>Performance prediction</h4>
-              <p>Forecast grade trajectories early to intervene faster.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with g2:
-        st.markdown(
-            """
-            <div class="card mini">
-              <h4>Student segmentation</h4>
-              <p>Cluster learners to tailor feedback and support at scale.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with g3:
-        st.markdown(
-            """
-            <div class="card mini">
-              <h4>Real-time dashboards</h4>
-              <p>Monitor engagement and outcomes as data arrives.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    # Workflow
-    st.markdown("<div class='section-heading'>Workflow</div>", unsafe_allow_html=True)
-    st.markdown(
-        """
-        <div class="timeline">
-          <div class="step"><span>1</span> Upload data</div>
-          <div class="step"><span>2</span> Clean & preprocess</div>
-          <div class="step"><span>3</span> Model & cluster</div>
-          <div class="step"><span>4</span> Generate insights</div>
-          <div class="step"><span>5</span> Share reports</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        """
-        <div class="cta-panel">
-          <div>
-            <div class="pill muted">Ready to explore?</div>
-            <h3>Run your first analysis in minutes.</h3>
-            <p>Upload an Excel file or enter data manually to see instant recommendations.</p>
-          </div>
-          <div class="cta-actions">
-            <a class="btn primary">📁 Upload Excel</a>
-            <a class="btn ghost">✍️ Manual entry</a>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.caption("Final Year Project · StudyTrack AI Study Habit Recommender")
+if __name__ == "__main__":
+    show_homepage()
