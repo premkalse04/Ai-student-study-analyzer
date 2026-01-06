@@ -13,5 +13,5 @@ def generate_recommendation(study, sleep, attendance, assignment, score):
         "Sleep": "Sleep at least 7–8 hrs/day." if sleep < 7 else "Healthy sleep schedule.",
         "Attendance": "Improve attendance for better clarity." if attendance < 75 else "Attendance is good.",
         "Assignments": "Complete assignments regularly." if assignment < 80 else "Good assignment consistency.",
-        "Advice": "Seek mentor support immediately." if score < 60 else "Maintain consistency and revise weekly."
+        "Advice": ("Need Improvement" if score < 60 else "Good consistency, but stay focused" if score >= 80 else "Maintain consistency and revise weekly.")
     }

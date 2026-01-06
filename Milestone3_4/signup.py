@@ -21,7 +21,7 @@ def signup_page():
 
 
 
-    email = st.text_input("Email")
+    email = st.text_input("Email").strip().lower()
     password = st.text_input("Password", type="password")
     confirm = st.text_input("Confirm Password", type="password")
 

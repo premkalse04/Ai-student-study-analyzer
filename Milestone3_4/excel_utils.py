@@ -12,7 +12,9 @@ COLUMN_ALIASES = {
         "assignment_completed",
         "assignments_completion"
     ],
-    "test_score": ["test_score", "score", "exam_score"]
+    "test_score": ["test_score", "score", "exam_score"],
+    "social_media_hours": ["social_media_hours", "social_media", "social"],
+    "exercise_hours": ["exercise_hours", "exercise"]
 }
 
 def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
@@ -48,22 +50,29 @@ def process_excel(df: pd.DataFrame) -> pd.DataFrame:
     df = normalize_columns(df)
     df = map_columns(df)
 
-    df["Performance_Level"] = df.apply(
-        lambda r: performance_level(
-            r["test_score"], r["attendance_percentage"]
-        ),
-        axis=1,
-    )
+    def compute(row):
+        rec = generate_recommendation(
+            row["study_hours_per_day"],
+            row["sleep_hours"],
+            row["attendance_percentage"],
+            row["assignment_completion"],
+            row["test_score"],
+        )
+        perf = rec.get("Performance")
+        return pd.Series(
+            {
+                "Performance_Level": perf,
+                "Rec_Study": rec.get("Study"),
+                "Rec_Sleep": rec.get("Sleep"),
+                "Rec_Attendance": rec.get("Attendance"),
+                "Rec_Assignments": rec.get("Assignments"),
+                "Rec_Advice": rec.get("Advice"),
+                "Rec_Summary": f"{perf} • {rec.get('Study')} | {rec.get('Sleep')} | "
+                               f"{rec.get('Attendance')} | {rec.get('Assignments')} | {rec.get('Advice')}",
+            }
+        )
 
-    df["Recommendation"] = df.apply(
-        lambda r: str(generate_recommendation(
-            r["study_hours_per_day"],
-            r["sleep_hours"],
-            r["attendance_percentage"],
-            r["assignment_completion"],
-            r["test_score"],
-        )),
-        axis=1,
-    )
+    rec_df = df.apply(compute, axis=1)
+    df = pd.concat([df, rec_df], axis=1)
 
     return df

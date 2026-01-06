@@ -32,7 +32,8 @@ print("\nPredicted Score:", pred[0])
 # ---------- PLOT ----------
 plt.figure(figsize=(10,6))
 plt.scatter(Y_test, Y_pred, color='red', s=120, label="Data Points", zorder=3)
-plt.plot([Y_test.min(), Y_test.max()], [Y_test.min(), Y_test.max()], color='blue', linewidth=2, label="Perfect Prediction Line", zorder=1)
+plt.plot([Y_test.min(), Y_test.max()], [Y_test.min(), Y_test.max()], color='blue',
+         linewidth=2, label="Perfect Prediction Line", zorder=1)
 plt.xlabel('Actual Exam Scores')
 plt.ylabel('Predicted Exam Scores')
 plt.title('Actual vs Predicted Exam Scores')

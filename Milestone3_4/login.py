@@ -24,6 +24,11 @@ def login_page():
         """, unsafe_allow_html=True)
 
     # -------- RIGHT PANEL --------
+    st.session_state.logged_in = True
+    st.session_state.user_email = email
+    st.rerun()
+
+    
     with col_right:
         st.markdown("""
         <div class="auth-right-panel">
